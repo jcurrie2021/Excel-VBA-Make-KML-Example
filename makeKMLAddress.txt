@@ -1,0 +1,78 @@
+Attribute VB_Name = "makeKMLAddress"
+ 
+Sub makeKMLAddress()
+Dim shead As String
+Dim sfoot As String
+Dim lRow As Long
+Dim lFile As Long
+Dim sFile As String
+Dim sPath As String
+Dim snl As String
+Dim sSht As String
+
+'Sheet name
+sSht = ActiveSheet.Name
+'Get return string
+snl = vbCr & vbLf
+
+'Get last row
+lRow = Sheets(sSht).UsedRange.Rows.Count
+
+
+'Get path and file
+sPath = ThisWorkbook.Path & "\"
+'sFile = this  workbook.name
+sFile = Replace(ThisWorkbook.Name, ".xlsm", ".kml")
+
+
+'define header for  .kml file
+shead = "<?xml version='1.0' encoding='UTF-8'?>" & vbCr & vbLf
+shead = shead & "<kml xmlns='http://www.opengis.net/kml/2.2'>" & vbCr & vbLf
+shead = shead & "<Document>" & snl
+
+
+'Define .kml footer
+sfoot = "</Document>" & vbCr & vbLf & "</kml>"
+
+'Open file
+lFile = FreeFile
+Open sPath & sFile For Output As lFile
+Print #lFile, shead
+
+
+'Loop through data set  bringing Placemarks: name, description and address
+For x = 2 To lRow
+Print #lFile, "<Placemark>";
+Print #lFile, "<name>";
+Print #lFile, CStr(Trim(Sheets(sSht).Cells(x, 1).Value));
+Print #lFile, "</name>";
+
+ 
+
+Print #lFile, "<description>";
+Print #lFile, Sheets(sSht).Cells(x, 3).Value;
+Print #lFile, "</description>";
+Print #lFile, "<address>";
+Print #lFile, Sheets(sSht).Cells(x, 2).Value;
+Print #lFile, "</address>";
+Print #lFile, "</Placemark>" & snl
+Next
+
+Print #lFile, sfoot
+Close
+ 
+ 
+
+On Error GoTo errmakeKMLAddress
+ 
+
+
+errmakeKMLAddressExit:
+Exit Sub
+
+
+errmakeKMLAddress:
+    MsgBox Err.Description
+    Resume errmakeKMLAddressExit
+
+End Sub
