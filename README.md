@@ -2,7 +2,7 @@
 # This repository contains the files necessary to follow the Youtube tutorial on making a Google Earth .kml file from addresses stored in a .csv file.
 The data file is stored as .csv (comma separated values), then manually converted into .xlsm (Excel macro file format)
 when placed (and opened) on the local system. Similarly, all of  the VBA code is stored in a .txt file
-then is manually renamed to .bas when following the tutorial. The .bas file is then imported
+then manually renamed to .bas when following the tutorial. The .bas file is then imported
 into .xlsm file  through the VBA code  environment.
 # Prerequisites:
 1. Google Earth must be installed on the local machine.<br>
