@@ -12,6 +12,15 @@ into .xlsm file  through the VBA code  environment.
 3. A trusted folder where VBA code can be run in Excel.<br>
   Add the folder where you want to build and run this exercise to Excel's Trusted Location list. Youtube: (https://www.youtube.com/watch?v=t5OcD1bk7Ek)
 # Steps for Building the project
-1. 
+1.	Download “makeKMLAddress.zip” from “<>Code” tab on the Github. Repository: https://github.com/jcurrie2021/Excel-VBA-Make-KML-Example
+2.	Open “makeKMLAddress.zip” and save the files to your local pc (place in Excel Trusted folder).
+3.	Rename “makeKMLAddress.txt” to “makeKMLAddress.bas”
+4.	Open “SanJoseDelicatessens4_26_2021.csv” in Excel and save the file (“SAVE AS”) “SanJoseDelicatessens4_26_2021.xlsm” (save as type “Excel Macro-Enabled Workbook”).
+5.	Click on the “Developer” tab to access the “Visual Basic” code window. Click on the “Visual Basic” icon.
+(the “Microsoft Visual Basic for Applications” window appears). 
+6.	Right click on “Microsoft Excel Objects”, followed by clicking “Import File” from the menu. Select “makeKMLAddress.bas” and click the “Open” button (this adds the makeKMLAddress module to the project). 
+7.	 Toggle to the Excel workbook. From the “Developer” tab click “Macros” (the Macros dialog box appears). Click on the macro “makeKMLAddress” followed by clicking the “Run” button. This will read all of the addresses on the current tab and create “SanJoseDelicatessens4_26_2021.kml” in your project folder.
+8.	You can now double-click on the “SanJoseDelicatessens4_26_2021.kml” from the Windows “File Explorer” to view your .kml file in Google Earth.  
+
 
 
