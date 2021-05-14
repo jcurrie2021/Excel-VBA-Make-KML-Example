@@ -37,7 +37,7 @@ Dim sSht As String 'worksheet name (type: string)<br>
 '(note: the apostrophe represents a comment in Visual Basic).<br>
 ```diff
 'Sheet name containing addresses
-sSht = ActiveSheet.NamesSht = ActiveSheet.Name
+sSht = ActiveSheet.Name
 ``` 
 ```diff
 'Get return string for adding line feed in .kml output file 
@@ -55,5 +55,13 @@ sPath = ThisWorkbook.Path & "\"
 'sFile = this  workbook.name 
 sFile = Replace(ThisWorkbook.Name, ".xlsm", ".kml") 
 ```
-
-
+```diff
+'define header for  .kml file
+shead = "<?xml version='1.0' encoding='UTF-8'?>" & vbCr & vbLf
+shead = shead & "<kml xmlns='http://www.opengis.net/kml/2.2'>" & vbCr & vbLf
+shead = shead & "<Document>" & snl
+```
+```diff
+'Define .kml footer
+sfoot = "</Document>" & vbCr & vbLf & "</kml>"
+```
