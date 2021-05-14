@@ -11,6 +11,7 @@ into .xlsm file  through the VBA code  environment.
   Expose Excel Developer tab on Ribbon. Youtube: (https://www.youtube.com/watch?v=JLQ8OuW0FlY)
 3. A trusted folder where VBA code can be run in Excel.<br>
   Add the folder where you want to build and run this exercise to Excel's Trusted Location list. Youtube: (https://www.youtube.com/watch?v=t5OcD1bk7Ek)
-
+# Steps for Building the project
+1. 
 
 
