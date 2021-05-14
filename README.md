@@ -21,6 +21,39 @@ into .xlsm file  through the VBA code  environment.
 6.	Right click on “Microsoft Excel Objects”, followed by clicking “Import File” from the menu. Select “makeKMLAddress.bas” and click the “Open” button (this adds the makeKMLAddress module to the project). 
 7.	 Toggle to the Excel workbook. From the “Developer” tab click “Macros” (the Macros dialog box appears). Click on the macro “makeKMLAddress” followed by clicking the “Run” button. This will read all of the addresses on the current tab and create “SanJoseDelicatessens4_26_2021.kml” in your project folder.
 8.	You can now double-click on the “SanJoseDelicatessens4_26_2021.kml” from the Windows “File Explorer” to view your .kml file in Google Earth.  
-
+# The macro code explained "makeKMLAddress.bas"<br> 
+'Variables are declared<br> 
+Dim shead As String 'xml heading (type: string)<br> 
+Dim sfoot As String 'xml footer (type: string)<br> 
+Dim lRow As Long 'last row in the active sheet (type: long)<br> 
+Dim lFile As Long 'file handle (type: long)<br> 
+Dim sFile As String 'file name (type: string)<br> 
+Dim sPath As String 'file path (type: string)<br> 
+Dim snl As String 'new line and line feed (type: string)<br> 
+Dim sSht As String 'worksheet name (type: string)<br> 
+<br>
+'***********************************<br>
+'Populate local variables<br>
+'(note: the apostrophe represents a comment in Visual Basic).<br>
+```diff
+'Sheet name containing addresses
+sSht = ActiveSheet.NamesSht = ActiveSheet.Name
+``` 
+```diff
+'Get return string for adding line feed in .kml output file 
+snl = vbCr & vbLf 
+``` 
+```diff
+'Get last row 
+lRow = Sheets(sSht).UsedRange.Rows.Count 
+```
+```diff
+'Get path and file 
+sPath = ThisWorkbook.Path & "\"
+```
+```diff
+'sFile = this  workbook.name 
+sFile = Replace(ThisWorkbook.Name, ".xlsm", ".kml") 
+```
 
 
