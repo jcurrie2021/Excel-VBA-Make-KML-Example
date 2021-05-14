@@ -5,11 +5,11 @@ when placed (and opened) on the local system. Similarly, all of  the VBA code is
 then manually renamed to .bas when following the tutorial. The .bas file is then imported
 into .xlsm file  through the VBA code  environment.
 # Prerequisites:
-1. Google Earth must be installed on the local machine.
-  Google Earth can be downloaded here (https://www.google.com/earth/versions/#download-pro)
-2. The Developer tab must be visible in Excel. 
+1. Google Earth must be installed on the local machine.<br>
+  Google Earth can be downloaded here. Google: (https://www.google.com/earth/versions/#download-pro)
+2. The Developer tab must be visible in Excel. <br>
   Expose Excel Developer tab on Ribbon. Youtube: (https://www.youtube.com/watch?v=JLQ8OuW0FlY)
-3. A trusted folder where VBA code can be run in Excel.
+3. A trusted folder where VBA code can be run in Excel.<br>
   Add the folder where you want to build and run this exercise to Excel's Trusted Location list. Youtube: (https://www.youtube.com/watch?v=t5OcD1bk7Ek)
 
 
