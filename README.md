@@ -3,7 +3,7 @@
 The data file is stored as .csv (comma separated values), then manually converted into .xlsm (Excel macro file format)
 when opened and saved on the local system. Similarly, all of  the VBA code is stored in a .txt file
 then manually renamed to .bas when following the tutorial. The .bas file is then imported
-into .xlsm file  through the VBA code  environment.
+into .xlsm file and run through the VBA code  environment.
 # Prerequisites:
 1. Google Earth must be installed on the local machine.<br>
   Google Earth can be downloaded here. Google: (https://www.google.com/earth/versions/#download-pro)
