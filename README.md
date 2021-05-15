@@ -22,19 +22,25 @@ into .xlsm file  through the VBA code  environment.
 7.	 Toggle to the Excel workbook. From the “Developer” tab click “Macros” (the Macros dialog box appears). Click on the macro “makeKMLAddress” followed by clicking the “Run” button. This will read all of the addresses on the current tab and create “SanJoseDelicatessens4_26_2021.kml” in your project folder.
 8.	You can now double-click on the “SanJoseDelicatessens4_26_2021.kml” from the Windows “File Explorer” to view your .kml file in Google Earth.  
 # The macro code explained "makeKMLAddress.bas"<br> 
-'Variables are declared<br> 
-Dim shead As String 'xml heading (type: string)<br> 
-Dim sfoot As String 'xml footer (type: string)<br> 
-Dim lRow As Long 'last row in the active sheet (type: long)<br> 
-Dim lFile As Long 'file handle (type: long)<br> 
-Dim sFile As String 'file name (type: string)<br> 
-Dim sPath As String 'file path (type: string)<br> 
-Dim snl As String 'new line and line feed (type: string)<br> 
-Dim sSht As String 'worksheet name (type: string)<br> 
-<br>
-'***********************************<br>
-'Populate local variables<br>
-'(note: the apostrophe represents a comment in Visual Basic).<br>
+```diff
+Attribute VB_Name = "makeKMLAddress" 'module name
+Sub makeKMLAddress() 'subroutine name. Not necessarily the same as the VB_Name
+
+'Variables are declared 
+Dim shead As String 'xml heading (type: string)
+Dim sfoot As String 'xml footer (type: string) 
+Dim lRow As Long 'last row in the active sheet (type: long)
+Dim lFile As Long 'file handle (type: long)
+Dim sFile As String 'file name (type: string) 
+Dim sPath As String 'file path (type: string) 
+Dim snl As String 'new line and line feed (type: string)
+Dim sSht As String 'worksheet name (type: string)
+```
+```diff
+'***********************************
+'Populate local variables
+'(note: the apostrophe represents a comment in Visual Basic).
+```
 ```diff
 'Sheet name containing addresses
 sSht = ActiveSheet.Name
@@ -64,4 +70,44 @@ shead = shead & "<Document>" & snl
 ```diff
 'Define .kml footer
 sfoot = "</Document>" & vbCr & vbLf & "</kml>"
+```
+```diff
+'***********************************
+'Open .kml file for writing 
+lFile = FreeFile 'Get file handle
+Open sPath & sFile For Output As lFile 'open file using sPath as folder, sFile as filename, lFile as file handle
+```
+```diff
+'Write the header to disk
+Print #lFile, shead
+```
+```diff
+'Loop through data set Placemarks: name, description and address
+For x = 2 To lRow 'start on row 2 of the active worksheets and continue reading down to the last row
+Print #lFile, "<Placemark>" 'Start a new placemark record
+Print #lFile, "<name>" & CStr(Trim(Sheets(sSht).Cells(x, 1).Value)) & "</name>" 'Enter name
+Print #lFile, "<description>" & Sheets(sSht).Cells(x, 3).Value & "</description>" 'Enter description
+Print #lFile, "<address>" & Sheets(sSht).Cells(x, 2).Value & "</address>" 'Enter address
+Print #lFile, "</Placemark>" & snl 'Close placemark and add a line feed
+Next x
+```
+```diff
+'Print the footer to finish building the .kml file
+Print #lFile, sfoot
+Close lFile 'close the open file handle
+```
+```diff
+MsgBox "Finished" 'Show message box that the process has finished.
+```
+```diff
+'handle errors
+On Error GoTo errmakeKMLAddress
+ 
+errmakeKMLAddressExit:
+Exit Sub
+
+errmakeKMLAddress:
+    MsgBox Err.Description
+    Resume errmakeKMLAddressExit
+End Sub
 ```
