@@ -23,7 +23,7 @@ into .xlsm file  through the VBA code  environment.
 8.	You can now double-click on the “SanJoseDelicatessens4_26_2021.kml” from the Windows “File Explorer” to view your .kml file in Google Earth.  
 # The macro code explained "makeKMLAddress.bas"<br> 
 ```diff
-Attribute VB_Name = "makeKMLAddress" 'module name
+Attribute VB_Name = "makeKMLAddress"
 Sub makeKMLAddress() 'subroutine name. Not necessarily the same as the VB_Name
 
 'Variables are declared 
