@@ -27,6 +27,7 @@ Attribute VB_Name = "makeKMLAddress"
 Sub makeKMLAddress() 'subroutine name. Not necessarily the same as the VB_Name
 ```
 #### 'Variables are declared
+#### '(note: the apostrophe represents a comment in Visual Basic). 
 ```diff
 'General purpose vars
 Dim snl As String 'new line and line feed (type: string)
@@ -46,7 +47,6 @@ Dim sSht As String 'worksheet name (type: string)
 Dim lRow As Long 'last row in the active sheet (type: long)
 ```
 #### 'Populate local variables
-#### '(note: the apostrophe represents a comment in Visual Basic). 
 ```diff
 'Get return string for adding line feed in .kml output file 
 snl = vbCr & vbLf 
