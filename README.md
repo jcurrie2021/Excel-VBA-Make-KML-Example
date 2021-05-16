@@ -25,64 +25,62 @@ into .xlsm file and run through the VBA code  environment.
 ```diff
 Attribute VB_Name = "makeKMLAddress"
 Sub makeKMLAddress() 'subroutine name. Not necessarily the same as the VB_Name
-
-'Variables are declared 
-Dim shead As String 'xml heading (type: string)
-Dim sfoot As String 'xml footer (type: string) 
-Dim lRow As Long 'last row in the active sheet (type: long)
-Dim lFile As Long 'file handle (type: long)
-Dim sFile As String 'file name (type: string) 
-Dim sPath As String 'file path (type: string) 
+```
+#### 'Variables are declared
+```diff
+'General purpose vars
 Dim snl As String 'new line and line feed (type: string)
+Dim x as long 'local counter
+
+'.kml xml header and footer
+Dim shead As String 'xml heading (type: string)
+Dim sfoot As String 'xml footer (type: string)
+
+'File related vars
+Dim lFile As Long 'file handle (type: long)
+Dim sFile As String 'file name (type: string)
+Dim sPath As String 'file path (type: string)
+
+'Sheet related vars
 Dim sSht As String 'worksheet name (type: string)
+Dim lRow As Long 'last row in the active sheet (type: long)
 ```
-```diff
-'***********************************
-'Populate local variables
-'(note: the apostrophe represents a comment in Visual Basic).
-```
-```diff
-'Sheet name containing addresses
-sSht = ActiveSheet.Name
-``` 
+#### 'Populate local variables
+#### '(note: the apostrophe represents a comment in Visual Basic). 
 ```diff
 'Get return string for adding line feed in .kml output file 
 snl = vbCr & vbLf 
-``` 
-```diff
-'Get last row 
-lRow = Sheets(sSht).UsedRange.Rows.Count 
 ```
+#### 'define .kml header and footer in xml format
 ```diff
-'Get path and file 
-sPath = ThisWorkbook.Path & "\"
-```
-```diff
-'sFile = this  workbook.name 
-sFile = Replace(ThisWorkbook.Name, ".xlsm", ".kml") 
-```
-```diff
-'define header for  .kml file
+'define header
 shead = "<?xml version='1.0' encoding='UTF-8'?>" & vbCr & vbLf
 shead = shead & "<kml xmlns='http://www.opengis.net/kml/2.2'>" & vbCr & vbLf
 shead = shead & "<Document>" & snl
-```
-```diff
-'Define .kml footer
+
+'define footer
 sfoot = "</Document>" & vbCr & vbLf & "</kml>"
 ```
+#### 'Populate file related vars (path, filename and file handle)
 ```diff
-'***********************************
-'Open .kml file for writing 
-lFile = FreeFile 'Get file handle
-Open sPath & sFile For Output As lFile 'open file using sPath as folder, sFile as filename, lFile as file handle
+'Get path and file 
+sPath = ThisWorkbook.Path & "\"
+
+'sFile = use this  workbook.name for .kml output filename
+sFile = Replace(ThisWorkbook.Name, ".xlsm", ".kml") 
+
+lFile = FreeFile 'Get free file handle
 ```
+#### 'Populate sheet related vars
 ```diff
-'Write the header to disk
-Print #lFile, shead
+'Sheet name containing addresses
+sSht = ActiveSheet.Name
+
+'Get last row in activesheet
+lRow = Sheets(sSht).UsedRange.Rows.Count  
 ```
+#### 'Loop through data in the Workbook creating .kml Placemarks: name, description and address
 ```diff
-'Loop through data set Placemarks: name, description and address
 For x = 2 To lRow 'start on row 2 of the active worksheets and continue reading down to the last row
 Print #lFile, "<Placemark>" 'Start a new placemark record
 Print #lFile, "<name>" & CStr(Trim(Sheets(sSht).Cells(x, 1).Value)) & "</name>" 'Enter name
@@ -91,16 +89,16 @@ Print #lFile, "<address>" & Sheets(sSht).Cells(x, 2).Value & "</address>" 'Enter
 Print #lFile, "</Placemark>" & snl 'Close placemark and add a line feed
 Next x
 ```
+#### 'Print the footer to finish building the .kml file. Close the file.
 ```diff
-'Print the footer to finish building the .kml file
 Print #lFile, sfoot
 Close lFile 'close the open file handle
 ```
 ```diff
 MsgBox "Finished" 'Show message box that the process has finished.
 ```
+#### 'handle errors
 ```diff
-'handle errors
 On Error GoTo errmakeKMLAddress
  
 errmakeKMLAddressExit:
