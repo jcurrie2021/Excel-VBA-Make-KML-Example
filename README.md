@@ -11,7 +11,7 @@ into .xlsm file and run through the VBA code  environment.
   Expose Excel Developer tab on Ribbon. Youtube: (https://www.youtube.com/watch?v=JLQ8OuW0FlY)
 3. A trusted folder where VBA code can be run in Excel.<br>
   Add the folder where you want to build and run this exercise to Excel's Trusted Location list. Youtube: (https://www.youtube.com/watch?v=t5OcD1bk7Ek)
-## Steps for Building the project
+# Steps for Building the project
 1.	Download “makeKMLAddress.zip” from “<>Code” tab on the Github. Repository: https://github.com/jcurrie2021/Excel-VBA-Make-KML-Example
 2.	Open “makeKMLAddress.zip” and save the files to your local pc (place in Excel Trusted folder).
 3.	Rename “makeKMLAddress.txt” to “makeKMLAddress.bas”
